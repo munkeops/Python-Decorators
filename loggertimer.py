@@ -1,3 +1,18 @@
+import time
+
+
+def timer(func):
+
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        rv = func()
+        end = time.time()
+        total = end-start
+        print("Time To Run : ", total)
+        return rv
+
+    return wrapper
+
 
 def logger(func):
 
@@ -10,6 +25,7 @@ def logger(func):
     return wrapper
 
 
+@timer
 @logger
 def test():
     print("testing")
